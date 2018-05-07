@@ -1,3 +1,6 @@
+# Library version
+include(version.pri)
+
 CONFIG += c++14
 
 INCLUDEPATH += $${PWD}/src
