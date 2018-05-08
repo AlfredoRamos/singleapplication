@@ -1,3 +1,6 @@
+# Library version
+include(../version.pri)
+
 QT -= gui
 
 TEMPLATE = lib
