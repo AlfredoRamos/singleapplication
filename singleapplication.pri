@@ -9,3 +9,6 @@ INCLUDEPATH += $${PWD}/src
 SOURCES += $${PWD}/src/singleapplication.cpp
 
 HEADERS += $${PWD}/src/singleapplication.hpp
+
+# Library version
+include(version.pri)
