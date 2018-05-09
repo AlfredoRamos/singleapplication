@@ -1,0 +1,20 @@
+language: cpp
+sudo: required
+
+branches:
+  only:
+    - master
+
+compiler:
+  - gcc
+  - clang
+
+arch:
+  packages:
+    - qt5-base
+    - qt5-tools
+  script:
+    - travis/build-library.sh
+
+script:
+  - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
