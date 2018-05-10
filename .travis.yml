@@ -1,6 +1,9 @@
 language: cpp
 sudo: required
 
+services:
+  - docker
+
 branches:
   only:
     - master
@@ -14,7 +17,7 @@ arch:
     - qt5-base
     - qt5-tools
   script:
-    - travis/build-library.sh
+    - travis/build.sh
 
 script:
-  - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
+  - curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash

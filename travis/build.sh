@@ -1,6 +1,6 @@
 #!/bin/bash --
 
-# Build library
+# Build
 mkdir build
 cd build
 qmake-qt5 ../ \
