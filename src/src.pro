@@ -20,8 +20,6 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050000 # disables all the APIs depreca
 # Source code
 include(../singleapplication.pri)
 
-HEADERS += singleapplication_global.hpp
-
 unix {
 	isEmpty(PREFIX) {
 		PREFIX = /usr
