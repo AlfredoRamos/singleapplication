@@ -40,6 +40,15 @@ Once the files are installed on your system, add the library in your project fil
 ```qmake
 LIBS += -lsingleapplication
 ```
+
+Alternatively you can use the library with `pkg-config`:
+
+**application.pro**
+```qmake
+CONFIG += link_pkgconfig
+PKGCONFIG += singleapplication
+```
+
 ___
 
 #### In your Qt/C++ application
@@ -52,8 +61,11 @@ Include the library:
 // Inside a project
 //#include "singleapplication.hpp"
 
-// Installed shared library
-//#include "singleapplication/singleapplication.hpp"
+// Installed shared library or pkg-config
+//#include <singleapplication/singleapplication.hpp>
+
+// pkg-config
+//#include <singleapplication.hpp>
 
 int main(int argc, char *argv[])
 {
