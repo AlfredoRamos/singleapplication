@@ -8,11 +8,63 @@ Single Application library for Qt without `network` dependency. Based on [Dmitry
 
 - Qt >= 5.0.0
 
-### Usage in a project
+### Usage
 
-Include the `singleapplication.pri` file within your project file.
+#### Inside a project
+
+Include the `singleapplication.pri` file within your project file:
 
 **application.pro**
 ```qmake
 include(singleapplication/singleapplication.pri)
+```
+___
+
+#### Installed shared library
+
+If you prefer to install the library on you system, you can do it with the following commands:
+
+```shell
+git clone https://github.com/AlfredoRamos/singleapplication.git
+cd singleapplication
+mkdir build
+cd build
+qmake ../ CONFIG+=release
+make
+make install
+```
+
+Once the files are installed on your system, add the library in your project file:
+
+**application.pro**
+```qmake
+LIBS += -lsingleapplication
+```
+___
+
+#### In your Qt/C++ application
+
+Include the library:
+
+**main.cpp**
+```cpp
+// ...
+// Inside a project
+//#include "singleapplication.hpp"
+
+// Installed shared library
+//#include "singleapplication/singleapplication.hpp"
+
+int main(int argc, char *argv[])
+{
+	SingleApplication *guard = new SingleApplication("key_string");
+
+	if (!guard->createInstance()) {
+		// Another instance of this application is already running
+		return 0;
+	}
+
+	QApplication a(argc, argv);
+	//...
+}
 ```
