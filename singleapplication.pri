@@ -12,4 +12,4 @@ HEADERS += $${PWD}/src/singleapplication_global.hpp \
 	$${PWD}/src/singleapplication.hpp
 
 # Library version
-include(version.pri)
+include(../src/version.pri)
