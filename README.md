@@ -35,6 +35,12 @@ make
 make install
 ```
 
+**Note:** If you also want to generate the pkg-config file, replace the previous `qmake` command with the following:
+
+```shell
+qmake ../ CONFIG+=release CONFIG+=pkgconfig
+```
+
 Once the files are installed on your system, add the library in your project file:
 
 **application.pro**
