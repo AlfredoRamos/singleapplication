@@ -8,6 +8,9 @@ DEFINES += SINGLEAPPLICATION_LIBRARY
 DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050000
 
+# Library version
+include(version.pri)
+
 # Source code
 include(../singleapplication.pri)
 
@@ -16,11 +19,14 @@ unix {
 		PREFIX = $$[QT_HOST_PREFIX]
 	}
 
+	LIBRARY_DIR = $${PREFIX}/lib
+	INCLUDE_DIR = $${PREFIX}/include/$${TARGET}
+
 	# Create pkg-config file
 	include (pkgconfig.pri)
 
-	target.path = $${PREFIX}/lib
-	headers.path = $${PREFIX}/include/$${TARGET}
+	target.path = $${LIBRARY_DIR}
+	headers.path = $${INCLUDE_DIR}
 	headers.files = $${HEADERS}
 
 	INSTALLS += target headers

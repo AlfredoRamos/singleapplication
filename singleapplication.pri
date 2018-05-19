@@ -10,6 +10,3 @@ SOURCES += $${PWD}/src/singleapplication.cpp
 
 HEADERS += $${PWD}/src/singleapplication_global.hpp \
 	$${PWD}/src/singleapplication.hpp
-
-# Library version
-include(../src/version.pri)
