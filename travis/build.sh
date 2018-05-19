@@ -6,7 +6,8 @@ cd build
 
 # Build library
 qmake-qt5 ../ \
-	CONFIG+=release
+	CONFIG+=release \
+	CONFIG+=pkgconfig
 make
 
 # Simullate installation
