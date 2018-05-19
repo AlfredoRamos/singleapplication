@@ -7,6 +7,7 @@ Single Application library for Qt without `network` dependency. Based on [Dmitry
 ### Dependencies
 
 - Qt >= 5.0.0
+- C++14 compiler support
 
 ### Usage
 
