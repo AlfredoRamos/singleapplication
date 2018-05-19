@@ -1,9 +1,17 @@
 #!/bin/bash --
 
-# Build
+# Build directory
 mkdir build
 cd build
+
+# Build library
 qmake-qt5 ../ \
 	CONFIG+=release
 make
+
+# Simullate installation
+make INSTALL_ROOT=../pkg install
+ls pkg/ -ARGgh
+
+# Previous directory
 cd ..
