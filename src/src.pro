@@ -22,8 +22,11 @@ include(../singleapplication.pri)
 
 unix {
 	isEmpty(PREFIX) {
-		PREFIX = /usr
+		PREFIX = $$[QT_HOST_PREFIX]
 	}
+
+	# Create pkg-config file
+	include (pkgconfig.pri)
 
 	target.path = $${PREFIX}/lib
 	headers.path = $${PREFIX}/include/$${TARGET}
