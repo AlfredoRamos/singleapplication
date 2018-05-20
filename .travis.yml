@@ -18,6 +18,7 @@ arch:
     - qt5-tools
   script:
     - travis/build.sh
+    - travis/run.sh
 
 script:
   - curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash

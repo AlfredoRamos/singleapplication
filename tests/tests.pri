@@ -1,0 +1,3 @@
+tests {
+	SUBDIRS += tests
+}

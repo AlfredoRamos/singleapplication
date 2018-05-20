@@ -7,12 +7,9 @@ cd build
 # Build library
 qmake-qt5 ../ \
 	CONFIG+=release \
-	CONFIG+=pkgconfig
+	CONFIG+=pkgconfig \
+	CONFIG+=tests
 make
-
-# Simullate installation
-make INSTALL_ROOT=../pkg install
-ls pkg/ -ARGgh
 
 # Previous directory
 cd ..
