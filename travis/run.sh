@@ -9,11 +9,11 @@ cd build
 
 # Build tests
 qmake-qt5 ../tests/
-make clean
 make
 
 # Run tests
 make check
+make distclean
 
 # Previous directory
 cd ..

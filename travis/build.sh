@@ -1,7 +1,6 @@
 #!/bin/bash --
 
 # Build directory
-# Build directory
 if [[ ! -d build ]]; then
 	mkdir build
 fi
@@ -16,6 +15,7 @@ make
 
 # Simulate installation
 make INSTALL_ROOT=../pkg install
+make distclean
 ls pkg/ -ARGgh
 
 # Previous directory
