@@ -14,7 +14,7 @@ qmake-qt5 ../ \
 make
 
 # Simulate installation
-make INSTALL_ROOT=../pkg install
+make INSTALL_ROOT=pkg install
 make distclean
 ls pkg/ -ARGgh
 

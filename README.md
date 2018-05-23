@@ -21,7 +21,7 @@ include(singleapplication/singleapplication.pri)
 ```
 ___
 
-#### Installed shared library
+#### Installed library
 
 If you prefer to install the library on you system, you can do it with the following commands:
 
@@ -68,10 +68,7 @@ Include the library:
 // Inside a project
 //#include "singleapplication.hpp"
 
-// Installed shared library or pkg-config
-//#include <singleapplication/singleapplication.hpp>
-
-// pkg-config
+// Installed library
 //#include <singleapplication.hpp>
 
 int main(int argc, char *argv[])
