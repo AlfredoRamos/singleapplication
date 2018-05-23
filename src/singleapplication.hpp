@@ -1,7 +1,6 @@
 #ifndef SINGLEAPPLICATION_HPP
 #define SINGLEAPPLICATION_HPP
 
-#include <QObject>
 #include <QSharedMemory>
 #include <QSystemSemaphore>
 #include <QCryptographicHash>
