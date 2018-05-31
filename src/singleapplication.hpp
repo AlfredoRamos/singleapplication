@@ -7,9 +7,7 @@
 
 #include "singleapplication_global.hpp"
 
-class SINGLEAPPLICATIONSHARED_EXPORT SingleApplication
-{
-
+class SINGLEAPPLICATIONSHARED_EXPORT SingleApplication {
 	public:
 		explicit SingleApplication(const QString &key);
 		~SingleApplication();

@@ -18,8 +18,7 @@ SingleApplication::SingleApplication(const QString &key) :
 	memLockKey(generateKeyHash(key, "_memLockKey")),
 	sharedMemKey(generateKeyHash(key, "_sharedMemKey")),
 	sharedMem(sharedMemKey),
-	memLock(memLockKey, 1)
-{
+	memLock(memLockKey, 1) {
 	memLock.acquire();
 	{
 		QSharedMemory fix(sharedMemKey);
@@ -49,8 +48,7 @@ bool SingleApplication::isRunning() {
 	return running;
 }
 
-bool SingleApplication::createInstance()
-{
+bool SingleApplication::createInstance() {
 	if (isRunning()) {
 		return false;
 	}
@@ -67,8 +65,7 @@ bool SingleApplication::createInstance()
 	return true;
 }
 
-void SingleApplication::release()
-{
+void SingleApplication::release() {
 	memLock.acquire();
 
 	if (sharedMem.isAttached()) {
