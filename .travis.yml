@@ -15,7 +15,9 @@ compiler:
 arch:
   packages:
     - qt5-base
+    - cppcheck
   script:
+    - travis/check.sh
     - travis/build.sh
     - travis/run.sh
 
