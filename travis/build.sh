@@ -1,5 +1,7 @@
 #!/bin/bash --
 
+set -e
+
 # Build directory
 if [[ ! -d build ]]; then
 	mkdir build

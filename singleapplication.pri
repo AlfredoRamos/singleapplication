@@ -1,5 +1,5 @@
-lessThan(QT_MAJOR_VERSION, 5) {
-	error("This app requires Qt 5 or later")
+!versionAtLeast(QT_VERSION, 5.9.2) {
+	error("This library requires Qt version equal or greater than 5.9.2")
 }
 
 CONFIG += c++14

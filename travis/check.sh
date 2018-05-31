@@ -1,5 +1,7 @@
 #!/bin/bash --
 
+set -e
+
 # Static code analysis
 cppcheck \
 	--report-progress \
