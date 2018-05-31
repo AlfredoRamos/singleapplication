@@ -8,5 +8,4 @@ INCLUDEPATH += $${PWD}/src
 
 SOURCES += $${PWD}/src/singleapplication.cpp
 
-HEADERS += $${PWD}/src/singleapplication_global.hpp \
-	$${PWD}/src/singleapplication.hpp
+HEADERS += $${PWD}/src/singleapplication.hpp

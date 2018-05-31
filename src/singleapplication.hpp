@@ -1,11 +1,16 @@
 #ifndef SINGLEAPPLICATION_HPP
 #define SINGLEAPPLICATION_HPP
 
+#include <QtGlobal>
 #include <QSharedMemory>
 #include <QSystemSemaphore>
 #include <QCryptographicHash>
 
-#include "singleapplication_global.hpp"
+#if defined(SINGLEAPPLICATION_LIBRARY)
+#  define SINGLEAPPLICATIONSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define SINGLEAPPLICATIONSHARED_EXPORT Q_DECL_IMPORT
+#endif
 
 class SINGLEAPPLICATIONSHARED_EXPORT SingleApplication {
 	public:
