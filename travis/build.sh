@@ -18,7 +18,7 @@ make
 # Simulate installation
 make INSTALL_ROOT=pkg install
 make distclean
-ls pkg/ -ARGgh
+tree -p pkg/
 
 # Previous directory
 cd ..

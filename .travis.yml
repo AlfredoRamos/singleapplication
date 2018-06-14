@@ -16,10 +16,14 @@ arch:
   packages:
     - qt5-base
     - cppcheck
+    - tree
   script:
     - travis/check.sh
     - travis/build.sh
     - travis/run.sh
+
+before_script:
+  - chmod +x travis/*.sh
 
 script:
   - curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash
