@@ -1,6 +1,5 @@
-!versionAtLeast(QT_VERSION, 5.9.2) {
-	error("This library requires Qt version equal or greater than 5.9.2")
-}
+# Qt version check
+include($${PWD}/src/qt_version_check.pri)
 
 CONFIG += c++14
 

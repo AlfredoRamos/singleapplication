@@ -23,7 +23,7 @@ unix {
 	INCLUDE_DIR = $${PREFIX}/include
 
 	# Create pkg-config file
-	include (src/pkgconfig.pri)
+	include(src/pkgconfig.pri)
 
 	target.path = $${LIBRARY_DIR}
 	headers.path = $${INCLUDE_DIR}
