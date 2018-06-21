@@ -15,6 +15,7 @@ qmake-qt5 ../ \
 	QMAKE_CFLAGS="${CFLAGS}" \
 	QMAKE_CXX="${CXX}" \
 	QMAKE_CXXFLAGS="${CXXFLAGS}" \
+	QMAKE_LINK="${CXX}" \
 	CONFIG+=release \
 	CONFIG+=pkgconfig
 make
