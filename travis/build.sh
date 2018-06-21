@@ -11,6 +11,10 @@ cd build
 
 # Build library
 qmake-qt5 ../ \
+	QMAKE_CC="${CC}" \
+	QMAKE_CFLAGS="${CFLAGS}" \
+	QMAKE_CXX="${CXX}" \
+	QMAKE_CXXFLAGS="${CXXFLAGS}" \
 	CONFIG+=release \
 	CONFIG+=pkgconfig
 make

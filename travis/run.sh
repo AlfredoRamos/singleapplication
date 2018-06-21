@@ -10,7 +10,11 @@ fi
 cd build
 
 # Build tests
-qmake-qt5 ../tests/
+qmake-qt5 ../tests/ \
+	QMAKE_CC="${CC}" \
+	QMAKE_CFLAGS="${CFLAGS}" \
+	QMAKE_CXX="${CXX}" \
+	QMAKE_CXXFLAGS="${CXXFLAGS}"
 make
 
 # Run tests
