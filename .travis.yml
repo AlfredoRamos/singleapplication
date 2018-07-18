@@ -14,6 +14,7 @@ compiler:
 
 arch:
   packages:
+    - clang
     - qt5-base
     - cppcheck
     - tree
