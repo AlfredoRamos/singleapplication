@@ -1,6 +1,6 @@
 ### About
 
-Single Application library for Qt without `network` dependency. Based on [Dmitry Sazonov](https://stackoverflow.com/users/1035613/dmitry-sazonov)'s [code](https://stackoverflow.com/a/28172162).
+Single application library for Qt without `network` dependency. Based on [Dmitry Sazonov](https://stackoverflow.com/users/1035613/dmitry-sazonov)'s [code](https://stackoverflow.com/a/28172162).
 
 [![Build Status](https://img.shields.io/travis/com/AlfredoRamos/singleapplication.svg?style=flat-square)](https://travis-ci.com/AlfredoRamos/singleapplication) [![Latest Stable Version](https://img.shields.io/github/tag/AlfredoRamos/singleapplication.svg?style=flat-square&label=stable)](https://github.com/AlfredoRamos/singleapplication/releases) [![License](https://img.shields.io/github/license/AlfredoRamos/singleapplication.svg?style=flat-square)](https://raw.githubusercontent.com/AlfredoRamos/singleapplication/master/LICENSE)
 
@@ -64,7 +64,6 @@ Include the library:
 
 **main.cpp**
 ```cpp
-// ...
 // Inside a project
 //#include "singleapplication.hpp"
 

@@ -19,12 +19,11 @@ class SingleApplicationTest : public QObject
 
 SingleApplicationTest::SingleApplicationTest()
 {
+	guard = new SingleApplication(QCoreApplication::applicationName());
 }
 
 void SingleApplicationTest::testInstance()
 {
-	SingleApplication *guard = new SingleApplication(QCoreApplication::applicationName());
-
 	QVERIFY2(guard->createInstance(), "Could not create first instance");
 
 	QVERIFY2(guard->createInstance() == false, "Must not create second instance");
