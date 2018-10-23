@@ -15,8 +15,8 @@ namespace {
 
 SingleApplication::SingleApplication(const QString &key) :
 	key(key),
-	memLockKey(generateKeyHash(key, "_memLockKey")),
-	sharedMemKey(generateKeyHash(key, "_sharedMemKey")),
+	memLockKey(generateKeyHash(key, QStringLiteral("_memLockKey"))),
+	sharedMemKey(generateKeyHash(key, QStringLiteral("_sharedMemKey"))),
 	sharedMem(sharedMemKey),
 	memLock(memLockKey, 1) {
 	memLock.acquire();
