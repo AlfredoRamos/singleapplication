@@ -1,4 +1,5 @@
 language: cpp
+dist: xenial
 
 matrix:
   include:
@@ -20,8 +21,8 @@ addons:
     update: true
     sources:
       - ubuntu-toolchain-r-test
-      - llvm-toolchain-trusty-7
-      - sourceline: 'ppa:beineri/opt-qt592-trusty'
+      - llvm-toolchain-xenial-7
+      - sourceline: 'ppa:beineri/opt-qt592-xenial'
     packages:
       - build-essential
       - gcc-8
