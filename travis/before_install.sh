@@ -14,19 +14,3 @@ else
 fi
 
 export PKG_CONFIG_PATH="${QT_BASE_DIR}"/lib/pkgconfig:"${PKG_CONFIG_PATH}"
-
-# Fix environment variables
-unset CC
-unset CXX
-
-if [[ "${COMPILER}" == "clang" ]]; then
-	export CC="clang-7"
-	export CXX="clang++-7"
-else
-	export CC="gcc-8"
-	export CXX="g++-8"
-fi
-
-# Show information
-"${CXX}" --version
-qmake --version

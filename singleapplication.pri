@@ -1,7 +1,7 @@
 # Qt version check
 include($${PWD}/src/qt_version_check.pri)
 
-CONFIG += c++14
+CONFIG += c++11
 
 INCLUDEPATH += $${PWD}/src
 

@@ -4,15 +4,20 @@ dist: xenial
 matrix:
   include:
     - os: linux
-      env: COMPILER=gcc
+      env: COMPILERS="CC=gcc && CXX=g++"
     - os: linux
-      env: COMPILER=clang
+      env: COMPILERS="CC=gcc-8 && CXX=g++-8"
+    - os: linux
+      env: COMPILERS="CC=clang && CXX=clang++"
+    - os: linux
+      env: COMPILERS="CC=clang-7 && CXX=clang++-7"
 
 branches:
   only:
     - master
 
 before_install:
+  - eval "${COMPILERS}"
   - chmod +x travis/*.sh
   - source travis/before_install.sh
 
@@ -25,11 +30,13 @@ addons:
       - sourceline: 'ppa:beineri/opt-qt592-xenial'
     packages:
       - build-essential
-      - gcc-8
       - g++-8
       - clang-7
       - qt59base
       - tree
+
+before_script:
+  - source travis/before_script.sh
 
 script:
   - source travis/script.sh
