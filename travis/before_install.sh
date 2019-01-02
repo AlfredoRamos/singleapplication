@@ -14,3 +14,8 @@ else
 fi
 
 export PKG_CONFIG_PATH="${QT_BASE_DIR}"/lib/pkgconfig:"${PKG_CONFIG_PATH}"
+
+# fix compilers
+if [[ ! -z "${COMPILERS}" ]]; then
+	eval "${COMPILERS}"
+fi
