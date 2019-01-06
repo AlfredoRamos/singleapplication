@@ -83,3 +83,5 @@ int main(int argc, char *argv[])
 	//...
 }
 ```
+
+The constructor of the `SingleApplication` class takes at the first and only parameter, a unique `Qstring`, it can be random generated one or information from the application, like `QCoreApplication::applicationName()`.
