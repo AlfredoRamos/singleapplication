@@ -1,20 +1,6 @@
 language: cpp
 dist: xenial
 
-addons:
-  apt:
-    update: true
-    sources:
-      - ubuntu-toolchain-r-test
-      - sourceline: 'ppa:beineri/opt-qt592-xenial'
-    packages:
-      - build-essential
-      - g++-4.9
-      - g++-8
-      - clang-3.5
-      - qt59base
-      - tree
-
 branches:
   only:
     - master
@@ -24,21 +10,65 @@ matrix:
     # g++ 4.9
     - os: linux
       compiler: gcc
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:beineri/opt-qt592-xenial'
+          packages:
+            - build-essential
+            - g++-4.9
+            - qt59base
+            - tree
       env: COMPILERS="CC=gcc-4.9 CXX=g++-4.9"
-    # g++ 5.5
+    # g++ 5.4
     - os: linux
       compiler: gcc
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:beineri/opt-qt592-xenial'
+          packages:
+            - build-essential
+            - qt59base
+            - tree
     # g++ 8
     - os: linux
       compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - sourceline: 'ppa:beineri/opt-qt592-xenial'
+          packages:
+            - build-essential
+            - g++-8
+            - qt59base
+            - tree
       env: COMPILERS="CC=gcc-8 CXX=g++-8"
     # clang 3.5
     - os: linux
       compiler: clang
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:beineri/opt-qt592-xenial'
+          packages:
+            - build-essential
+            - clang-3.5
+            - qt59base
+            - tree
       env: COMPILERS="CC=clang-3.5 CXX=clang++-3.5"
     # clang 7
     - os: linux
       compiler: clang
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:beineri/opt-qt592-xenial'
+          packages:
+            - build-essential
+            - qt59base
+            - tree
 
 before_install:
   - chmod +x travis/*.sh
