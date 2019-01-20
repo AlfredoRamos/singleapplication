@@ -16,7 +16,7 @@ include(singleapplication.pri)
 
 unix {
 	isEmpty(PREFIX) {
-		PREFIX = $$[QT_HOST_PREFIX]
+		PREFIX = /usr
 	}
 
 	LIBRARY_DIR = $${PREFIX}/lib
