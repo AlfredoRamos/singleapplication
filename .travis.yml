@@ -8,6 +8,7 @@ branches:
 matrix:
   include:
     # g++ 4.9
+    # qt 5.9.2
     - os: linux
       compiler: gcc
       addons:
@@ -19,8 +20,27 @@ matrix:
             - g++-4.9
             - qt59base
             - tree
-      env: COMPILERS="CC=gcc-4.9 CXX=g++-4.9"
+      env:
+        - COMPILERS="CC=gcc-4.9 CXX=g++-4.9"
+        - QT="5.9"
+    # g++ 4.9
+    # qt 5.12
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:beineri/opt-qt-5.12.0-xenial'
+          packages:
+            - build-essential
+            - g++-4.9
+            - qt512base
+            - tree
+      env:
+        - COMPILERS="CC=gcc-4.9 CXX=g++-4.9"
+        - QT="5.12"
     # g++ 5.4
+    # qt 5.9.2
     - os: linux
       compiler: gcc
       addons:
@@ -31,7 +51,24 @@ matrix:
             - build-essential
             - qt59base
             - tree
+      env:
+        - QT="5.9"
+    # g++ 5.4
+    # qt 5.12
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:beineri/opt-qt-5.12.0-xenial'
+          packages:
+            - build-essential
+            - qt512base
+            - tree
+      env:
+        - QT="5.12"
     # g++ 8
+    # qt 5.9.2
     - os: linux
       compiler: gcc
       addons:
@@ -44,8 +81,28 @@ matrix:
             - g++-8
             - qt59base
             - tree
-      env: COMPILERS="CC=gcc-8 CXX=g++-8"
+      env:
+        - COMPILERS="CC=gcc-8 CXX=g++-8"
+        - QT="5.9"
+    # g++ 8
+    # qt 5.12
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - sourceline: 'ppa:beineri/opt-qt-5.12.0-xenial'
+          packages:
+            - build-essential
+            - g++-8
+            - qt512base
+            - tree
+      env:
+        - COMPILERS="CC=gcc-8 CXX=g++-8"
+        - QT="5.12"
     # clang 3.5
+    # qt 5.9.2
     - os: linux
       compiler: clang
       addons:
@@ -57,8 +114,27 @@ matrix:
             - clang-3.5
             - qt59base
             - tree
-      env: COMPILERS="CC=clang-3.5 CXX=clang++-3.5"
+      env:
+        - COMPILERS="CC=clang-3.5 CXX=clang++-3.5"
+        - QT="5.9"
+    # clang 3.5
+    # qt 5.12
+    - os: linux
+      compiler: clang
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:beineri/opt-qt-5.12.0-xenial'
+          packages:
+            - build-essential
+            - clang-3.5
+            - qt512base
+            - tree
+      env:
+        - COMPILERS="CC=clang-3.5 CXX=clang++-3.5"
+        - QT="5.12"
     # clang 7
+    # qt 5.9.2
     - os: linux
       compiler: clang
       addons:
@@ -69,6 +145,22 @@ matrix:
             - build-essential
             - qt59base
             - tree
+      env:
+        - QT="5.9"
+    # clang 7
+    # qt 5.12
+    - os: linux
+      compiler: clang
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:beineri/opt-qt-5.12.0-xenial'
+          packages:
+            - build-essential
+            - qt512base
+            - tree
+      env:
+        - QT="5.12"
 
 before_install:
   - chmod +x travis/*.sh
