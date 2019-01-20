@@ -22,8 +22,7 @@ qmake ../ \
 	QMAKE_CXXFLAGS="${CXXFLAGS}" \
 	QMAKE_LINK="${CXX}" \
 	CONFIG+=release \
-	CONFIG+=pkgconfig \
-	PREFIX=/usr
+	CONFIG+=pkgconfig
 make
 
 # Simulate installation
