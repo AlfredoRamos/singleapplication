@@ -19,6 +19,7 @@ matrix:
             - build-essential
             - g++-4.9
             - qt59base
+            - cppcheck
             - tree
       env:
         - COMPILERS="CC=gcc-4.9 CXX=g++-4.9"
@@ -35,6 +36,7 @@ matrix:
             - build-essential
             - g++-4.9
             - qt512base
+            - cppcheck
             - tree
       env:
         - COMPILERS="CC=gcc-4.9 CXX=g++-4.9"
@@ -50,6 +52,7 @@ matrix:
           packages:
             - build-essential
             - qt59base
+            - cppcheck
             - tree
       env:
         - QT="5.9"
@@ -64,6 +67,7 @@ matrix:
           packages:
             - build-essential
             - qt512base
+            - cppcheck
             - tree
       env:
         - QT="5.12"
@@ -80,6 +84,7 @@ matrix:
             - build-essential
             - g++-8
             - qt59base
+            - cppcheck
             - tree
       env:
         - COMPILERS="CC=gcc-8 CXX=g++-8"
@@ -97,6 +102,7 @@ matrix:
             - build-essential
             - g++-8
             - qt512base
+            - cppcheck
             - tree
       env:
         - COMPILERS="CC=gcc-8 CXX=g++-8"
@@ -113,6 +119,7 @@ matrix:
             - build-essential
             - clang-3.5
             - qt59base
+            - cppcheck
             - tree
       env:
         - COMPILERS="CC=clang-3.5 CXX=clang++-3.5"
@@ -129,6 +136,7 @@ matrix:
             - build-essential
             - clang-3.5
             - qt512base
+            - cppcheck
             - tree
       env:
         - COMPILERS="CC=clang-3.5 CXX=clang++-3.5"
@@ -144,6 +152,7 @@ matrix:
           packages:
             - build-essential
             - qt59base
+            - cppcheck
             - tree
       env:
         - QT="5.9"
@@ -158,6 +167,7 @@ matrix:
           packages:
             - build-essential
             - qt512base
+            - cppcheck
             - tree
       env:
         - QT="5.12"
