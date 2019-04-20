@@ -1,5 +1,5 @@
 # Qt version check
-include($${PWD}/src/qt_version_check.pri)
+include($${PWD}/qmake/qt_version_check.pri)
 
 CONFIG += c++11
 

@@ -9,7 +9,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050902
 
 # Library version
-include(src/version.pri)
+include(qmake/version.pri)
 
 # Source code
 include(singleapplication.pri)
@@ -23,7 +23,7 @@ unix {
 	INCLUDE_DIR = $${PREFIX}/include
 
 	# Create pkg-config file
-	include(src/pkgconfig.pri)
+	include(qmake/pkgconfig.pri)
 
 	target.path = $${LIBRARY_DIR}
 	headers.path = $${INCLUDE_DIR}
