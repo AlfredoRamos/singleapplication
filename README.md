@@ -35,10 +35,10 @@ mkdir build
 cd build
 qmake ../ CONFIG+=release
 make
-make install
+make INSTALL_ROOT="pkg" install
 ```
 
-**Note:** If you also want to generate the pkg-config file, replace the previous `qmake` command with the following:
+**Note:** If you also want to generate the pkg-config file, use the following `qmake` command instead:
 
 ```shell
 qmake ../ CONFIG+=release CONFIG+=pkgconfig
@@ -87,4 +87,4 @@ int main(int argc, char *argv[])
 }
 ```
 
-The constructor of the `SingleApplication` class takes at the first and only parameter, a unique `Qstring`, it can be random generated one or information from the application, like `QCoreApplication::applicationName()`.
+The constructor of the `SingleApplication` class takes at the first and only parameter, a unique `Qstring`, it can be random a generated one or information from the application, like `QCoreApplication::applicationName()`.
