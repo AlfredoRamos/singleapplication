@@ -181,3 +181,6 @@ before_script:
 
 script:
   - source travis/script.sh
+
+after_success:
+  - source travis/after_success.sh

@@ -21,3 +21,6 @@ fi
 if [[ ! -z "${COMPILERS}" ]]; then
 	eval "${COMPILERS}"
 fi
+
+# code coverage
+curl $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r '.assets | map({content_type, browser_download_url} | select(.content_type | contains("application/x-java-archive"))) | .[0].browser_download_url') -o codacy-coverage-reporter-assembly.jar
