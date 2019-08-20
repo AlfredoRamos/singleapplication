@@ -3,7 +3,7 @@
 set -e
 
 if [[ ! -z "${QT}" ]]; then
-	# source /opt/qt59/bin/qt{59,512}-env.sh
+	# source /opt/qt{59,512}/bin/qt{59,512}-env.sh
 	QT_BASE_DIR=/opt/qt"${QT//./}"
 	export QTDIR="${QT_BASE_DIR}"
 	export PATH="${QT_BASE_DIR}"/bin:"${PATH}"
