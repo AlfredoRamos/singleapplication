@@ -173,11 +173,11 @@ matrix:
         - QT="5.12"
 
 before_install:
-  - chmod +x travis/*.sh
-  - source travis/before_install.sh
+  - chmod +x .travis/*.sh
+  - source .travis/before_install.sh
 
 before_script:
-  - source travis/before_script.sh
+  - source .travis/before_script.sh
 
 script:
-  - source travis/script.sh
+  - source .travis/script.sh
