@@ -31,7 +31,7 @@ matrix:
       addons:
         apt:
           sources:
-            - sourceline: 'ppa:beineri/opt-qt-5.12.0-xenial'
+            - sourceline: 'ppa:beineri/opt-qt-5.12.3-xenial'
           packages:
             - build-essential
             - g++-4.9
@@ -63,7 +63,7 @@ matrix:
       addons:
         apt:
           sources:
-            - sourceline: 'ppa:beineri/opt-qt-5.12.0-xenial'
+            - sourceline: 'ppa:beineri/opt-qt-5.12.3-xenial'
           packages:
             - build-essential
             - qt512base
@@ -97,7 +97,7 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - sourceline: 'ppa:beineri/opt-qt-5.12.0-xenial'
+            - sourceline: 'ppa:beineri/opt-qt-5.12.3-xenial'
           packages:
             - build-essential
             - g++-8
@@ -131,7 +131,7 @@ matrix:
       addons:
         apt:
           sources:
-            - sourceline: 'ppa:beineri/opt-qt-5.12.0-xenial'
+            - sourceline: 'ppa:beineri/opt-qt-5.12.3-xenial'
           packages:
             - build-essential
             - clang-3.5
@@ -163,7 +163,7 @@ matrix:
       addons:
         apt:
           sources:
-            - sourceline: 'ppa:beineri/opt-qt-5.12.0-xenial'
+            - sourceline: 'ppa:beineri/opt-qt-5.12.3-xenial'
           packages:
             - build-essential
             - qt512base
@@ -173,11 +173,11 @@ matrix:
         - QT="5.12"
 
 before_install:
-  - chmod +x travis/*.sh
-  - source travis/before_install.sh
+  - chmod +x .travis/*.sh
+  - source .travis/before_install.sh
 
 before_script:
-  - source travis/before_script.sh
+  - source .travis/before_script.sh
 
 script:
-  - source travis/script.sh
+  - source .travis/script.sh
