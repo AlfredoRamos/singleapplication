@@ -4,7 +4,6 @@ Single application library for Qt without `network` dependency. Based on [Dmitry
 
 [![Build Status](https://img.shields.io/travis/com/AlfredoRamos/singleapplication.svg?style=flat-square)](https://travis-ci.com/AlfredoRamos/singleapplication)
 [![Latest Stable Version](https://img.shields.io/github/tag/AlfredoRamos/singleapplication.svg?style=flat-square&label=stable)](https://github.com/AlfredoRamos/singleapplication/releases)
-[![Code Quality](https://img.shields.io/codacy/grade/581bcfdd69ab4f46b3b45401fef797ee.svg?style=flat-square)](https://app.codacy.com/app/AlfredoRamos/singleapplication)
 [![License](https://img.shields.io/github/license/AlfredoRamos/singleapplication.svg?style=flat-square)](https://raw.githubusercontent.com/AlfredoRamos/singleapplication/master/LICENSE)
 
 ### Dependencies
