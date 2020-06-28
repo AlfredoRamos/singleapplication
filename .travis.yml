@@ -41,6 +41,23 @@ matrix:
       env:
         - COMPILERS="CC=gcc-4.9 CXX=g++-4.9"
         - QT="5.12"
+    # g++ 4.9
+    # qt 5.14
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:beineri/opt-qt-5.14.2-xenial'
+          packages:
+            - build-essential
+            - g++-4.9
+            - qt514base
+            - cppcheck
+            - tree
+      env:
+        - COMPILERS="CC=gcc-4.9 CXX=g++-4.9"
+        - QT="5.14"
     # g++ 5.4
     # qt 5.9.2
     - os: linux
@@ -71,6 +88,21 @@ matrix:
             - tree
       env:
         - QT="5.12"
+    # g++ 5.4
+    # qt 5.14
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:beineri/opt-qt-5.14.2-xenial'
+          packages:
+            - build-essential
+            - qt514base
+            - cppcheck
+            - tree
+      env:
+        - QT="5.14"
     # g++ 8
     # qt 5.9.2
     - os: linux
@@ -107,6 +139,24 @@ matrix:
       env:
         - COMPILERS="CC=gcc-8 CXX=g++-8"
         - QT="5.12"
+    # g++ 8
+    # qt 5.14
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - sourceline: 'ppa:beineri/opt-qt-5.14.2-xenial'
+          packages:
+            - build-essential
+            - g++-8
+            - qt514base
+            - cppcheck
+            - tree
+      env:
+        - COMPILERS="CC=gcc-8 CXX=g++-8"
+        - QT="5.14"
     # clang 3.5
     # qt 5.9.2
     - os: linux
@@ -141,6 +191,23 @@ matrix:
       env:
         - COMPILERS="CC=clang-3.5 CXX=clang++-3.5"
         - QT="5.12"
+    # clang 3.5
+    # qt 5.14
+    - os: linux
+      compiler: clang
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:beineri/opt-qt-5.14.2-xenial'
+          packages:
+            - build-essential
+            - clang-3.5
+            - qt514base
+            - cppcheck
+            - tree
+      env:
+        - COMPILERS="CC=clang-3.5 CXX=clang++-3.5"
+        - QT="5.14"
     # clang 7
     # qt 5.9.2
     - os: linux
@@ -171,6 +238,27 @@ matrix:
             - tree
       env:
         - QT="5.12"
+    # clang 7
+    # qt 5.14
+    - os: linux
+      compiler: clang
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:beineri/opt-qt-5.14.2-xenial'
+          packages:
+            - build-essential
+            - qt514base
+            - cppcheck
+            - tree
+      env:
+        - QT="5.14"
+  allow_failures:
+    # Qt 5.14 test with G++ 4.9 are broken
+    - env:
+      - COMPILERS="CC=gcc-4.9 CXX=g++-4.9"
+      - QT="5.14"
+  fast_finish: true
 
 before_install:
   - chmod +x .travis/*.sh
