@@ -26,6 +26,7 @@ jobs:
       - name: Setup Qt
         env:
           QT_VER: ${{ matrix.qt-version }}
+          COMP_TYPE: ${{ matrix.compiler-type }}
         run: |
           if [[ $QT_VER == "5.9" ]]
           then
@@ -54,18 +55,26 @@ jobs:
             echo "/opt/qt${QT_VER//./}/lib" >> $GITHUB_PATH
           fi
           echo "/opt/qt${QT_VER//./}/lib/pkgconfig" >> $GITHUB_PATH
+          if [[ $COMP_TYPE == "clang" ]]
+          then
+            echo "CC=clang-6.0" >> $GITHUB_ENV
+            echo "CXX=clang++-6.0" >> $GITHUB_ENV
+          else
+            echo "CC=gcc-5" >> $GITHUB_ENV
+            echo "CXX=g++-5" >> $GITHUB_ENV
+          fi
       - name: Run Cppcheck
         run: cppcheck --enable=all --inconclusive --report-progress --std=c++11 src/
       - name: Build package
         run: |
           mkdir build
           cd build
-          qmake ../ CONFIG+=release CONFIG+=pkgconfig
+          qmake ../ QMAKE_CC="${CC}" QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXX="${CXX}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LINK="${CXX}" CONFIG+=release CONFIG+=pkgconfig
           make
           make INSTALL_ROOT=pkg install
           make distclean
           tree -p pkg/
-          qmake ../tests/
+          qmake ../tests/ QMAKE_CC="${CC}" QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXX="${CXX}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LINK="${CXX}"
           make
           make check
           make distclean
