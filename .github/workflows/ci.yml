@@ -1,4 +1,4 @@
-name: GitHub Actions CI
+name: CI
 
 on:
   push:
@@ -21,26 +21,29 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@master
+
       - name: Install common packages
         run: sudo apt install build-essential cppcheck tree
+
       - name: Setup Qt
         env:
           QT_VER: ${{ matrix.qt-version }}
           COMP_TYPE: ${{ matrix.compiler-type }}
         run: |
+          dist_codename=$(lsb_release -cs)
           if [[ $QT_VER == "5.9" ]]
           then
-            sudo add-apt-repository "ppa:beineri/opt-qt592-$(lsb_release -cs)"
+            sudo add-apt-repository "ppa:beineri/opt-qt592-$dist_codename"
             sudo apt update
             sudo apt install qt59base
           elif [[ $QT_VER == "5.12" ]]
           then
-            sudo add-apt-repository "ppa:beineri/opt-qt-5.12.10-$(lsb_release -cs)"
+            sudo add-apt-repository "ppa:beineri/opt-qt-5.12.10-$dist_codename"
             sudo apt update
             sudo apt install qt512base
           elif [[ $QT_VER == "5.15" ]]
           then
-            sudo add-apt-repository "ppa:beineri/opt-qt-5.15.2-$(lsb_release -cs)"
+            sudo add-apt-repository "ppa:beineri/opt-qt-5.15.2-$dist_codename"
             sudo apt update
             sudo apt install qt515base
           fi
@@ -63,17 +66,23 @@ jobs:
             echo "CC=gcc-5" >> $GITHUB_ENV
             echo "CXX=g++-5" >> $GITHUB_ENV
           fi
+          mkdir build
+
       - name: Run Cppcheck
         run: cppcheck --enable=all --inconclusive --report-progress --std=c++11 src/
+
       - name: Build package
+        working-directory: build
         run: |
-          mkdir build
-          cd build
           qmake ../ QMAKE_CC="${CC}" QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXX="${CXX}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LINK="${CXX}" CONFIG+=release CONFIG+=pkgconfig
           make
           make INSTALL_ROOT=pkg install
           make distclean
           tree -p pkg/
+
+      - name: Run tests
+        working-directory: build
+        run: |
           qmake ../tests/ QMAKE_CC="${CC}" QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXX="${CXX}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LINK="${CXX}"
           make
           make check
