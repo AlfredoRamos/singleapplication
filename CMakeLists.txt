@@ -66,18 +66,26 @@ install(
 	PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
 )
 
-set(PKG_CONFIG_CFLAGS "")
-set(PKG_CONFIG_LIBS "-l${PROJECT_NAME}")
-
-configure_file(
-	cmake/pkg-config-template.pc.in
-	"${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc"
-	@ONLY
-	NO_SOURCE_PERMISSIONS
-	NEWLINE_STYLE UNIX
+option(
+	GENERATE_PKG_CONFIG
+	"Generate pkg-config file"
+	OFF
 )
 
-install(
-	FILES "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc"
-	DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig"
-)
+if(GENERATE_PKG_CONFIG)
+	set(PKG_CONFIG_CFLAGS "")
+	set(PKG_CONFIG_LIBS "-l${PROJECT_NAME}")
+
+	configure_file(
+		cmake/pkg-config-template.pc.in
+		"${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc"
+		@ONLY
+		NO_SOURCE_PERMISSIONS
+		NEWLINE_STYLE UNIX
+	)
+
+	install(
+		FILES "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc"
+		DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig"
+	)
+endif()

@@ -83,7 +83,7 @@ jobs:
       - name: Build package with cmake
         working-directory: build
         run: |
-          cmake -S ../ -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_BUILD_TYPE=Release
+          cmake -S ../ -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DGENERATE_PKG_CONFIG=ON -DCMAKE_BUILD_TYPE=Release
           cmake --build . --clean-first
           cmake --install . --prefix pkg/usr/ --strip
           tree -p pkg/

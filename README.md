@@ -68,9 +68,17 @@ PKGCONFIG += singleapplication
 ```
 git clone https://github.com/AlfredoRamos/singleapplication.git
 cd singleapplication
+mkdir build
+cd build
 cmake -S ../ -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
-cmake --build build --clean-first
-cmake --install build --prefix build/pkg/usr/ --strip
+cmake --build . --clean-first
+cmake --install . --prefix pkg/usr/ --strip
+```
+
+**Note:** If you also want to generate the pkg-config file, replace the first `cmake` command with the following:
+
+```shell
+cmake -S ../ -DCMAKE_INSTALL_PREFIX=/usr -DGENERATE_PKG_CONFIG=ON -DCMAKE_BUILD_TYPE=Release
 ```
 
 ___
