@@ -26,7 +26,9 @@ ___
 
 #### Installed library
 
-If you prefer to install the library on you system, you can do it with the following commands:
+If you prefer to install the library on you system, you can do it with the following commands.
+
+##### QMake
 
 ```shell
 git clone https://github.com/AlfredoRamos/singleapplication.git
@@ -57,6 +59,18 @@ Alternatively you can use the library with `pkg-config`:
 ```qmake
 CONFIG += link_pkgconfig
 PKGCONFIG += singleapplication
+```
+
+##### CMake
+
+**Note:** This is still experimental.
+
+```
+git clone https://github.com/AlfredoRamos/singleapplication.git
+cd singleapplication
+cmake -S ../ -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
+cmake --build build --clean-first
+cmake --install build --prefix build/pkg/usr/ --strip
 ```
 
 ___
