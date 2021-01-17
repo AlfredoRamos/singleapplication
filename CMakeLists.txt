@@ -8,7 +8,7 @@ project(
 	HOMEPAGE_URL "https://github.com/AlfredoRamos/singleapplication"
 )
 
-if ("${CMAKE_BINARY_DIR}" STREQUAL "${CMAKE_SOURCE_DIR}")
+if("${CMAKE_BINARY_DIR}" STREQUAL "${CMAKE_SOURCE_DIR}")
 	message(FATAL_ERROR "In-source builds are not allowed")
 endif()
 
@@ -19,6 +19,13 @@ add_compile_options(-Wall)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
+
+set(QT_MINIMUM_VERSION 5.9.2)
+if(QT_VERSION VERSION_LESS QT_MINIMUM_VERSION)
+	message(FATAL_ERROR "This library requires Qt >= ${QT_MINIMUM_VERSION}, found ${QT_VERSION}")
+else()
+	message(NOTICE "Building with Qt ${QT_VERSION}")
+endif()
 
 add_library(
 	"${PROJECT_NAME}"
@@ -48,4 +55,11 @@ set_target_properties(
 	PROPERTIES
 	VERSION "${PROJECT_VERSION}"
 	SOVERSION "${PROJECT_VERSION_MAJOR}"
+	PUBLIC_HEADER src/singleapplication.hpp
+)
+
+install(
+	TARGETS "${PROJECT_NAME}"
+	LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+	PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
 )

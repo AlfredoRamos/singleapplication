@@ -78,13 +78,16 @@ jobs:
           make
           make INSTALL_ROOT=pkg install
           tree -p pkg/
-          make distclean
+          rm -fR *
 
       - name: Build package with cmake
         working-directory: build
         run: |
           cmake -S ../ -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
           cmake --build . --clean-first
+          cmake --install . --prefix pkg/usr/ --strip
+          tree -p pkg/
+          rm -fR *
 
       - name: Run tests with qmake
         working-directory: build
@@ -92,4 +95,4 @@ jobs:
           qmake ../tests/ QMAKE_CC="${CC}" QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXX="${CXX}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LINK="${CXX}"
           make
           make check
-          make distclean
+          rm -fR *
