@@ -89,10 +89,18 @@ jobs:
           tree -p pkg/
           rm -fR *
 
-      - name: Run tests
+      - name: QMake tests
         working-directory: build
         run: |
           qmake ../tests/ QMAKE_CC="${CC}" QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXX="${CXX}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LINK="${CXX}"
           make
           make check
+          rm -fR *
+
+      - name: QMake tests
+        working-directory: build
+        run: |
+          cmake -S ../tests/
+          cmake --build . --clean-first
+          ctest -V
           rm -fR *
