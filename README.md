@@ -65,7 +65,7 @@ PKGCONFIG += singleapplication
 
 **Note:** This is still experimental.
 
-```
+```shell
 git clone https://github.com/AlfredoRamos/singleapplication.git
 cd singleapplication
 mkdir build

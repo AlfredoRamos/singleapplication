@@ -97,7 +97,7 @@ jobs:
           make check
           rm -fR *
 
-      - name: QMake tests
+      - name: CMake tests
         working-directory: build
         run: |
           cmake -S ../tests/
