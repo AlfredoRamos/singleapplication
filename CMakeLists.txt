@@ -15,19 +15,10 @@ endif()
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_compile_options(-Wall)
-set(QT_MINIMUM_VERSION 5.9.2)
 
 include(GNUInstallDirs)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
-
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
-
-if(QT_VERSION VERSION_LESS QT_MINIMUM_VERSION)
-	message(FATAL_ERROR "This library requires Qt >= ${QT_MINIMUM_VERSION}, found ${QT_VERSION}")
-else()
-	message(STATUS "Building with Qt ${QT_VERSION}")
-endif()
+include(FindQt)
 
 add_library(
 	"${PROJECT_NAME}"
@@ -66,26 +57,4 @@ install(
 	PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
 )
 
-option(
-	GENERATE_PKG_CONFIG
-	"Generate pkg-config file"
-	OFF
-)
-
-if(GENERATE_PKG_CONFIG)
-	set(PKG_CONFIG_CFLAGS "")
-	set(PKG_CONFIG_LIBS "-l${PROJECT_NAME}")
-
-	configure_file(
-		cmake/pkg-config-template.pc.in
-		"${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc"
-		@ONLY
-		NO_SOURCE_PERMISSIONS
-		NEWLINE_STYLE UNIX
-	)
-
-	install(
-		FILES "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc"
-		DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig"
-	)
-endif()
+include(GeneratePkgConfig)
