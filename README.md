@@ -16,11 +16,22 @@ Single application library for Qt without `network` dependency. Based on [Dmitry
 
 #### Inside a project
 
+##### QMake
+
 Include the `singleapplication.pri` file within your project file:
 
 **application.pro**
 ```qmake
 include(singleapplication/singleapplication.pri)
+```
+
+##### CMake
+
+Include the `singleapplication` directory and add the library on your `CMakeLists.txt` file:
+
+```cmake
+add_subdirectory(libs/singleapplication)
+target_link_libraries(YOUR_TARGET singleapplication)
 ```
 ___
 
