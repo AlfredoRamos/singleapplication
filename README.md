@@ -4,7 +4,7 @@ Single application library for Qt without `network` dependency. Based on [Dmitry
 
 [![Build Status](https://img.shields.io/github/workflow/status/AlfredoRamos/singleapplication/CI?style=flat-square)](https://github.com/AlfredoRamos/singleapplication/actions)
 [![Latest Stable Version](https://img.shields.io/github/tag/AlfredoRamos/singleapplication.svg?style=flat-square&label=stable)](https://github.com/AlfredoRamos/singleapplication/releases)
-[![Code Quality](https://img.shields.io/codacy/grade/25787416f2ae418c8bbb3dc004789f40.svg?style=flat-square)](https://app.codacy.com/manual/AlfredoRamos/singleapplication/dashboard)
+[![Code Quality](https://img.shields.io/codacy/grade/25787416f2ae418c8bbb3dc004789f40.svg?style=flat-square)](https://app.codacy.com/gh/AlfredoRamos/singleapplication/dashboard)
 [![License](https://img.shields.io/github/license/AlfredoRamos/singleapplication.svg?style=flat-square)](https://raw.githubusercontent.com/AlfredoRamos/singleapplication/master/LICENSE)
 
 ### Dependencies
@@ -108,7 +108,7 @@ target_link_libraries(YOUR_TARGET PkgConfig::singleapplication)
 
 ---
 
-#### Usage
+### Usage
 
 In the `main.cpp` file of your Qt/C++ application include the library, create a new instance of `SingleApplication`, and add a check if another instance is already running using `SingleApplication::createInstance()`:
 
