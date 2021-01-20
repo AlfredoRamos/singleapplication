@@ -12,27 +12,47 @@ Single application library for Qt without `network` dependency. Based on [Dmitry
 - Qt >= 5.9.2
 - C++11 compiler support
 
-### Usage
+### Build
 
-#### Inside a project
+#### Subproject
+
+If you want to use the library directly inside your application source code, you can use any of the following methods:
+
+##### QMake subproject
 
 Include the `singleapplication.pri` file within your project file:
 
-**application.pro**
 ```qmake
 include(singleapplication/singleapplication.pri)
 ```
-___
 
-#### Installed library
+##### CMake subproject
 
-If you prefer to install the library on you system, you can do it with the following commands:
+Include the `singleapplication` directory and add the library on your `CMakeLists.txt` file:
+
+```cmake
+add_subdirectory(singleapplication)
+target_link_libraries(YOUR_TARGET singleapplication)
+```
+
+---
+
+#### System library
+
+First you will need to get the sources and create a build directory. In-source builds are not allowed.
 
 ```shell
 git clone https://github.com/AlfredoRamos/singleapplication.git
 cd singleapplication
 mkdir build
 cd build
+```
+
+After that, you can use any of the following methods to build and install the library on your system.
+
+##### QMake build
+
+```shell
 qmake ../ CONFIG+=release
 make
 make INSTALL_ROOT="pkg" install
@@ -46,31 +66,57 @@ qmake ../ CONFIG+=release CONFIG+=pkgconfig
 
 Once the files are installed on your system, add the library in your project file:
 
-**application.pro**
 ```qmake
 LIBS += -lsingleapplication
 ```
 
-Alternatively you can use the library with `pkg-config`:
+Alternatively, if you built the library with the `CONFIG+=pkgconfig` flag, you can use the library with `pkg-config`:
 
-**application.pro**
 ```qmake
 CONFIG += link_pkgconfig
 PKGCONFIG += singleapplication
 ```
 
-___
+##### CMake build
 
-#### In your Qt/C++ application
+```shell
+cmake -S ../ -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
+cmake --build . --clean-first
+cmake --install . --prefix pkg/usr/ --strip
+```
 
-Include the library:
+**Note:** If you also want to generate the pkg-config file, replace the first `cmake` command with the following:
 
-**main.cpp**
+```shell
+cmake -S ../ -DCMAKE_INSTALL_PREFIX=/usr -DGENERATE_PKG_CONFIG=ON -DCMAKE_BUILD_TYPE=Release
+```
+
+Once the files are installed on your system, add the library in your `CMakeLists.txt` file:
+
+```cmake
+find_package(singleapplication REQUIRED)
+target_link_libraries(YOUR_TARGET singleapplication)
+```
+
+Alternatively, if you built the library with the `-DGENERATE_PKG_CONFIG=ON` flag, you can use the library with `pkg-config`:
+
+```cmake
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(singleapplication REQUIRED IMPORTED_TARGET singleapplication)
+target_link_libraries(YOUR_TARGET PkgConfig::singleapplication)
+```
+
+---
+
+#### Usage
+
+In the `main.cpp` file of your Qt/C++ application include the library, create a new instance of `SingleApplication`, and add a check if another instance is already running using `SingleApplication::createInstance()`:
+
 ```cpp
-// Inside a project
+// Subproject
 //#include "singleapplication.hpp"
 
-// Installed library
+// System library
 //#include <singleapplication.hpp>
 
 int main(int argc, char *argv[])
@@ -87,4 +133,6 @@ int main(int argc, char *argv[])
 }
 ```
 
-The constructor of the `SingleApplication` class takes at the first and only parameter, a unique `Qstring`, it can be random a generated one or information from the application, like `QCoreApplication::applicationName()`.
+The constructor of the `SingleApplication` class only accepts one parameter and must be a `QString`.
+
+You can specify random generated `QString` or using information from the application, like `QCoreApplication::applicationName()`.
