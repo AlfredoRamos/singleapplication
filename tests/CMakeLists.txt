@@ -15,9 +15,8 @@ add_compile_options(-Wall)
 
 include(GNUInstallDirs)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/../cmake")
-include(FindQt)
+include(FindQtLib)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Test)
-set(CMAKE_AUTOMOC ON)
 
 enable_testing(true)
 add_executable("${PROJECT_NAME}")

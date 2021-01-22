@@ -18,7 +18,7 @@ add_compile_options(-Wall)
 
 include(GNUInstallDirs)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
-include(FindQt)
+include(FindQtLib)
 
 add_library(
 	"${PROJECT_NAME}"
