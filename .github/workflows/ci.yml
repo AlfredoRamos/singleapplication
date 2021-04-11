@@ -30,26 +30,26 @@ jobs:
           QT_VER: ${{ matrix.qt-version }}
           COMP_TYPE: ${{ matrix.compiler-type }}
         run: |
-          dist_codename=$(lsb_release -cs)
-          if [[ $QT_VER == "5.9" ]]
+          dist_codename="$(lsb_release -cs)"
+          qt_package=""
+          if [[ "${QT_VER}" == "5.9" ]]
           then
-            sudo add-apt-repository "ppa:beineri/opt-qt592-$dist_codename"
-            sudo apt update
-            sudo apt install qt59base
-          elif [[ $QT_VER == "5.12" ]]
+            sudo add-apt-repository "ppa:beineri/opt-qt592-${dist_codename}"
+            qt_package=qt59base
+          elif [[ "${QT_VER}" == "5.12" ]]
           then
-            sudo add-apt-repository "ppa:beineri/opt-qt-5.12.10-$dist_codename"
-            sudo apt update
-            sudo apt install qt512base
-          elif [[ $QT_VER == "5.15" ]]
+            sudo add-apt-repository "ppa:beineri/opt-qt-5.12.10-${dist_codename}"
+            qt_package=qt512base
+          elif [[ "${QT_VER}" == "5.15" ]]
           then
-            sudo add-apt-repository "ppa:beineri/opt-qt-5.15.2-$dist_codename"
-            sudo apt update
-            sudo apt install qt515base
+            sudo add-apt-repository "ppa:beineri/opt-qt-5.15.2-${dist_codename}"
+            qt_package=qt515base
           fi
+          sudo apt update
+          sudo apt install "${qt_package}"
           echo "QTDIR=/opt/qt${QT_VER//./}" >> $GITHUB_ENV
           echo "/opt/qt${QT_VER//./}/bin" >> $GITHUB_PATH
-          if [[ $(uname -m) == "x86_64" ]]
+          if [[ "$(uname -m)" == "x86_64" ]]
           then
             echo "/opt/qt${QT_VER//./}/lib/x86_64-linux-gnu" >> $GITHUB_PATH
             echo "/opt/qt${QT_VER//./}/lib" >> $GITHUB_PATH
@@ -58,13 +58,13 @@ jobs:
             echo "/opt/qt${QT_VER//./}/lib" >> $GITHUB_PATH
           fi
           echo "/opt/qt${QT_VER//./}/lib/pkgconfig" >> $GITHUB_PATH
-          if [[ $COMP_TYPE == "clang" ]]
+          if [[ "${COMP_TYPE}" == "clang" ]]
           then
-            echo "CC=clang-6.0" >> $GITHUB_ENV
-            echo "CXX=clang++-6.0" >> $GITHUB_ENV
+            echo "CC=clang" >> $GITHUB_ENV
+            echo "CXX=clang++" >> $GITHUB_ENV
           else
-            echo "CC=gcc-5" >> $GITHUB_ENV
-            echo "CXX=g++-5" >> $GITHUB_ENV
+            echo "CC=gcc" >> $GITHUB_ENV
+            echo "CXX=g++" >> $GITHUB_ENV
           fi
           mkdir build
 
