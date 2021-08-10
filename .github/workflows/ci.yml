@@ -13,10 +13,10 @@ on:
 jobs:
   build:
     name: Qt ${{ matrix.qt-version }}, ${{ matrix.compiler-type }}
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     strategy:
       matrix:
-        qt-version: [5.9, 5.12, 5.15]
+        qt-version: ['5.11', '5.12', '5.15']
         compiler-type: [gcc, clang]
     steps:
       - name: Checkout sources
@@ -32,10 +32,10 @@ jobs:
         run: |
           dist_codename="$(lsb_release -cs)"
           qt_package=""
-          if [[ "${QT_VER}" == "5.9" ]]
+          if [[ "${QT_VER}" == "5.11" ]]
           then
-            sudo add-apt-repository "ppa:beineri/opt-qt592-${dist_codename}"
-            qt_package=qt59base
+            sudo add-apt-repository "ppa:beineri/opt-qt-5.11.0-${dist_codename}"
+            qt_package=qt511base
           elif [[ "${QT_VER}" == "5.12" ]]
           then
             sudo add-apt-repository "ppa:beineri/opt-qt-5.12.10-${dist_codename}"
