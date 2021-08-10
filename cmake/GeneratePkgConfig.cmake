@@ -11,7 +11,7 @@ if(GENERATE_PKG_CONFIG)
 	set(PKG_CONFIG_LIBS "-l${PROJECT_NAME}")
 
 	configure_file(
-		cmake/pkg-config-template.pc.in
+		"${CMAKE_SOURCE_DIR}/cmake/pkg-config-template.pc.in"
 		"${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc"
 		@ONLY
 		NO_SOURCE_PERMISSIONS
