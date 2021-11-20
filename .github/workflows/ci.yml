@@ -2,13 +2,8 @@ name: CI
 
 on:
   push:
-    branches:
-      - master
+    branches: [master]
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
 
 jobs:
   build:
@@ -20,7 +15,7 @@ jobs:
         compiler-type: [gcc, clang]
     steps:
       - name: Checkout sources
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
 
       - name: Install common packages
         run: sudo apt install build-essential cppcheck tree
