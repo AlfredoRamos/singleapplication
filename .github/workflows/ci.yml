@@ -8,51 +8,22 @@ on:
 jobs:
   build:
     name: Qt ${{ matrix.qt-version }}, ${{ matrix.compiler-type }}
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        qt-version: ['5.11', '5.12', '5.15']
+        qt-version: ['5.11.0', '5.12.0', '5.15.0', '6.2.0']
         compiler-type: [gcc, clang]
     steps:
       - name: Checkout sources
         uses: actions/checkout@v3
 
       - name: Install common packages
-        run: sudo apt install build-essential cppcheck tree
+        run: sudo apt install cppcheck tree
 
-      - name: Setup Qt
+      - name: Setup compiler
         env:
-          QT_VER: ${{ matrix.qt-version }}
           COMP_TYPE: ${{ matrix.compiler-type }}
         run: |
-          dist_codename="$(lsb_release -cs)"
-          qt_package=""
-          if [[ "${QT_VER}" == "5.11" ]]
-          then
-            sudo add-apt-repository "ppa:beineri/opt-qt-5.11.0-${dist_codename}"
-            qt_package=qt511base
-          elif [[ "${QT_VER}" == "5.12" ]]
-          then
-            sudo add-apt-repository "ppa:beineri/opt-qt-5.12.10-${dist_codename}"
-            qt_package=qt512base
-          elif [[ "${QT_VER}" == "5.15" ]]
-          then
-            sudo add-apt-repository "ppa:beineri/opt-qt-5.15.2-${dist_codename}"
-            qt_package=qt515base
-          fi
-          sudo apt update
-          sudo apt install "${qt_package}"
-          echo "QTDIR=/opt/qt${QT_VER//./}" >> $GITHUB_ENV
-          echo "/opt/qt${QT_VER//./}/bin" >> $GITHUB_PATH
-          if [[ "$(uname -m)" == "x86_64" ]]
-          then
-            echo "/opt/qt${QT_VER//./}/lib/x86_64-linux-gnu" >> $GITHUB_PATH
-            echo "/opt/qt${QT_VER//./}/lib" >> $GITHUB_PATH
-          else
-            echo "/opt/qt${QT_VER//./}/lib/i386-linux-gnu" >> $GITHUB_PATH
-            echo "/opt/qt${QT_VER//./}/lib" >> $GITHUB_PATH
-          fi
-          echo "/opt/qt${QT_VER//./}/lib/pkgconfig" >> $GITHUB_PATH
           if [[ "${COMP_TYPE}" == "clang" ]]
           then
             echo "CC=clang" >> $GITHUB_ENV
@@ -62,6 +33,14 @@ jobs:
             echo "CXX=g++" >> $GITHUB_ENV
           fi
           mkdir build
+
+      - name: Setup Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: ${{ matrix.qt-version }}
+          host: linux
+          target: desktop
+          archives: qtbase
 
       - name: Run Cppcheck
         run: cppcheck --enable=all --inconclusive --report-progress --std=c++11 src/
