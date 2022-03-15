@@ -1,5 +1,14 @@
 set(QT_MINIMUM_VERSION 5.9.2)
 
+option(USE_QT5 "Use Qt 5 instead of the higher major version available" OFF)
+
+set(CMAKE_FIND_PACKAGE_SORT_ORDER NATURAL)
+set(CMAKE_FIND_PACKAGE_SORT_DIRECTION DEC)
+
+if(USE_QT5)
+	set(CMAKE_FIND_PACKAGE_SORT_DIRECTION ASC)
+endif()
+
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
 
