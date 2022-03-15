@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        qt-version: ['5.11.0', '5.12.0', '5.15.0', '6.2.0']
+        qt-version: ['5.9.2', '5.11.0', '5.12.0', '5.15.0', '6.2.0']
         compiler-type: [gcc, clang]
     steps:
       - name: Checkout sources
@@ -40,7 +40,6 @@ jobs:
           version: ${{ matrix.qt-version }}
           host: linux
           target: desktop
-          archives: qtbase
 
       - name: Run Cppcheck
         run: cppcheck --enable=all --inconclusive --report-progress --std=c++11 src/
