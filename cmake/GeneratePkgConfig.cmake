@@ -1,8 +1,4 @@
-option(
-	GENERATE_PKG_CONFIG
-	"Generate pkg-config file"
-	OFF
-)
+option(GENERATE_PKG_CONFIG "Generate pkg-config file" OFF)
 
 if(GENERATE_PKG_CONFIG)
 	message(STATUS "Generating pkg-config file")

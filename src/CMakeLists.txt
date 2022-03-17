@@ -5,10 +5,7 @@ add_compile_options(-Wall)
 include(GNUInstallDirs)
 include(FindQtLib)
 
-add_library(
-	"${PROJECT_NAME}"
-	SHARED
-)
+add_library("${PROJECT_NAME}" SHARED)
 
 target_sources(
 	"${PROJECT_NAME}"
