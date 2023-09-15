@@ -15,7 +15,7 @@ jobs:
         compiler-type: [gcc, clang]
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install common packages
         run: sudo apt install build-essential cppcheck tree p7zip
