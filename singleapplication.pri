@@ -1,7 +1,11 @@
 # Qt version check
 include($${PWD}/qmake/qt_version_check.pri)
 
-CONFIG += c++11
+lessThan(QT_MAJOR_VERSION, 6) {
+	CONFIG += c++11
+} else {
+	CONFIG += c++1z
+}
 
 INCLUDEPATH += $${PWD}/src
 
