@@ -35,7 +35,7 @@ jobs:
           mkdir build
 
       - name: Setup Qt
-        uses: jurplel/install-qt-action@v4
+        uses: jurplel/install-qt-action@v3
         with:
           version: ${{ matrix.qt-version }}
           host: linux
