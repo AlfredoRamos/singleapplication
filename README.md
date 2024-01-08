@@ -2,7 +2,7 @@
 
 Single application library for Qt without `network` dependency. Based on [Dmitry Sazonov](https://stackoverflow.com/users/1035613/dmitry-sazonov)'s [code](https://stackoverflow.com/a/28172162).
 
-[![Build Status](https://img.shields.io/github/workflow/status/AlfredoRamos/singleapplication/CI?style=flat-square)](https://github.com/AlfredoRamos/singleapplication/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/AlfredoRamos/singleapplication/ci.yml?style=flat-square)](https://github.com/AlfredoRamos/singleapplication/actions)
 [![Latest Stable Version](https://img.shields.io/github/tag/AlfredoRamos/singleapplication.svg?style=flat-square&label=stable)](https://github.com/AlfredoRamos/singleapplication/releases)
 [![Code Quality](https://img.shields.io/codacy/grade/25787416f2ae418c8bbb3dc004789f40.svg?style=flat-square)](https://app.codacy.com/gh/AlfredoRamos/singleapplication/dashboard)
 [![License](https://img.shields.io/github/license/AlfredoRamos/singleapplication.svg?style=flat-square)](https://raw.githubusercontent.com/AlfredoRamos/singleapplication/master/LICENSE)
