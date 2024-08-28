@@ -25,6 +25,18 @@ add_subdirectory(singleapplication)
 target_link_libraries(YOUR_TARGET singleapplication)
 ```
 
+##### CPM.cmake subproject
+```cmake
+CPMAddPackage(
+  NAME singleapplication
+  GITHUB_REPOSITORY AlfredoRamos/singleapplication
+  GIT_TAG master
+  OPTIONS
+    "SINGLEAPPLICATION_BUILD_STATIC_LIB OFF"
+)
+target_link_libraries(${PROJECT_NAME} PRIVATE singleapplication)
+```
+
 ---
 
 #### System library

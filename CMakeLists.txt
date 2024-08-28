@@ -8,6 +8,8 @@ project(
 	HOMEPAGE_URL "https://github.com/AlfredoRamos/singleapplication"
 )
 
+option(SINGLEAPPLICATION_BUILD_STATIC_LIB "Build static library." OFF)
+
 if("${CMAKE_BINARY_DIR}" STREQUAL "${CMAKE_SOURCE_DIR}")
 	message(FATAL_ERROR "In-source builds are not allowed")
 endif()
