@@ -10,6 +10,7 @@ jobs:
     name: Qt ${{ matrix.qt-version }}, ${{ matrix.compiler-type }}
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         qt-version: ['5.9.2', '5.15.0', '6.2.0']
         compiler-type: [gcc, clang]
@@ -32,7 +33,6 @@ jobs:
             echo "CC=gcc" >> $GITHUB_ENV
             echo "CXX=g++" >> $GITHUB_ENV
           fi
-          mkdir build
 
       - name: Setup Qt
         uses: jurplel/install-qt-action@v4
@@ -50,35 +50,31 @@ jobs:
         run: cppcheck --enable=all --inconclusive --report-progress --std=c++11 src/
 
       - name: QMake package build
-        working-directory: build
         run: |
+          mkdir build && cd build
           qmake ../ QMAKE_CC="${CC}" QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXX="${CXX}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LINK="${CXX}" CONFIG+=release CONFIG+=pkgconfig
-          make
-          make INSTALL_ROOT=pkg install
+          make && make INSTALL_ROOT=pkg install
           tree -p pkg/
-          rm -fR *
+          cd .. && rm -fR build
 
       - name: CMake package build
-        working-directory: build
         run: |
-          cmake -S ../ -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DGENERATE_PKG_CONFIG=ON -DCMAKE_BUILD_TYPE=Release
-          cmake --build . --clean-first
-          cmake --install . --prefix pkg/usr/ --strip
-          tree -p pkg/
-          rm -fR *
+          cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DGENERATE_PKG_CONFIG=ON -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --clean-first
+          cmake --install build --prefix build/pkg/usr/ --strip
+          tree -p build/pkg/
+          rm -fR build
 
       - name: QMake tests
-        working-directory: build
         run: |
+          mkdir build && cd build
           qmake ../tests/ QMAKE_CC="${CC}" QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXX="${CXX}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LINK="${CXX}"
-          make
-          make check
-          rm -fR *
+          make && make check
+          cd .. && rm -fR build
 
       - name: CMake tests
-        working-directory: build
         run: |
-          cmake -S ../tests/
-          cmake --build . --clean-first
-          ctest -V
-          rm -fR *
+          cmake -S tests -B build
+          cmake --build build --clean-first
+          ctest -V --test-dir build
+          rm -fR build
