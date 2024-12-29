@@ -8,8 +8,6 @@ project(
 	HOMEPAGE_URL "https://github.com/AlfredoRamos/singleapplication"
 )
 
-option(SINGLEAPPLICATION_BUILD_STATIC_LIB "Build static library." OFF)
-
 if("${CMAKE_BINARY_DIR}" STREQUAL "${CMAKE_SOURCE_DIR}")
 	message(FATAL_ERROR "In-source builds are not allowed")
 endif()
@@ -17,3 +15,5 @@ endif()
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
 add_subdirectory(src)
+
+message(STATUS "Building ${PROJECT_NAME} ${PROJECT_VERSION}")

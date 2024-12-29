@@ -1,14 +1,7 @@
 include(FindCppStd)
 include(GNUInstallDirs)
 include(FindQtLib)
-
-if(SINGLEAPPLICATION_BUILD_STATIC_LIB)
-    add_library("${PROJECT_NAME}" STATIC)
-    message(STATUS "singleapplication build as static lib")
-else ()
-    add_library("${PROJECT_NAME}" SHARED)
-    message(STATUS "singleapplication build as share lib")
-endif ()
+include(LibBuildType)
 
 target_sources(
 	"${PROJECT_NAME}"
