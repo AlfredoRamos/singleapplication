@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.18.0)
 project(
 	singleapplication
 	LANGUAGES CXX
-	VERSION 1.1.0
+	VERSION 1.2.0
 	DESCRIPTION "Single application library for Qt without network dependency"
 	HOMEPAGE_URL "https://github.com/AlfredoRamos/singleapplication"
 )
