@@ -18,16 +18,6 @@ Single application library for Qt without `network` dependency. Based on [Dmitry
 
 If you want to use the library directly inside your application source code, you can use any of the following methods:
 
-##### QMake subproject
-
-Include the `singleapplication.pri` file within your project file:
-
-```qmake
-include(singleapplication/singleapplication.pri)
-```
-
-##### CMake subproject
-
 Include the `singleapplication` directory and add the library on your `CMakeLists.txt` file:
 
 ```cmake
@@ -48,34 +38,6 @@ cd singleapplication
 
 After that, you can use any of the following methods to build and install the library on your system.
 
-##### QMake build
-
-```shell
-mkdir build && cd build
-qmake ../ CONFIG+=release
-make
-make INSTALL_ROOT="pkg" install
-```
-
-**Note:** If you also want to generate the pkg-config file, use the following `qmake` command instead:
-
-```shell
-qmake ../ CONFIG+=release CONFIG+=pkgconfig
-```
-
-Once the files are installed on your system, add the library in your project file:
-
-```qmake
-LIBS += -lsingleapplication
-```
-
-Alternatively, if you built the library with the `CONFIG+=pkgconfig` flag, you can use the library with `pkg-config`:
-
-```qmake
-CONFIG += link_pkgconfig
-PKGCONFIG += singleapplication
-```
-
 ##### CMake build
 
 ```shell
@@ -84,10 +46,10 @@ cmake --build build --clean-first
 cmake --install build --prefix build/pkg/usr/ --strip
 ```
 
-**Note:** If you also want to generate the pkg-config file, replace the first `cmake` command with the following:
+**Note:** If you also want to generate the pkg-config file, add the `-DGENERATE_PKG_CONFIG=ON` flag in the first `cmake` command:
 
 ```shell
-cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr -DGENERATE_PKG_CONFIG=ON -DCMAKE_BUILD_TYPE=Release
+cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DGENERATE_PKG_CONFIG=ON
 ```
 
 Once the files are installed on your system, add the library in your `CMakeLists.txt` file:

@@ -1,5 +1,6 @@
 * text=auto
 tests/ export-ignore
+.vscode/ export-ignore
 .github/ export-ignore
 .gitignore export-ignore
 .gitattributes export-ignore

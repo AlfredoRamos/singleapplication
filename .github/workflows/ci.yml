@@ -49,15 +49,7 @@ jobs:
       - name: Run Cppcheck
         run: cppcheck --enable=all --inconclusive --report-progress --std=c++11 src/
 
-      - name: QMake package build
-        run: |
-          mkdir build && cd build
-          qmake ../ QMAKE_CC="${CC}" QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXX="${CXX}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LINK="${CXX}" CONFIG+=release CONFIG+=pkgconfig
-          make && make INSTALL_ROOT=pkg install
-          tree -p pkg/
-          cd .. && rm -fR build
-
-      - name: CMake package build
+      - name: Package build
         run: |
           cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DGENERATE_PKG_CONFIG=ON -DCMAKE_BUILD_TYPE=Release
           cmake --build build --clean-first
@@ -65,14 +57,7 @@ jobs:
           tree -p build/pkg/
           rm -fR build
 
-      - name: QMake tests
-        run: |
-          mkdir build && cd build
-          qmake ../tests/ QMAKE_CC="${CC}" QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXX="${CXX}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LINK="${CXX}"
-          make && make check
-          cd .. && rm -fR build
-
-      - name: CMake tests
+      - name: Run tests
         run: |
           cmake -S tests -B build
           cmake --build build --clean-first
