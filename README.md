@@ -44,8 +44,6 @@ First you will need to get the sources and create a build directory. In-source b
 ```shell
 git clone https://github.com/AlfredoRamos/singleapplication.git
 cd singleapplication
-mkdir build
-cd build
 ```
 
 After that, you can use any of the following methods to build and install the library on your system.
@@ -53,6 +51,7 @@ After that, you can use any of the following methods to build and install the li
 ##### QMake build
 
 ```shell
+mkdir build && cd build
 qmake ../ CONFIG+=release
 make
 make INSTALL_ROOT="pkg" install
@@ -80,15 +79,15 @@ PKGCONFIG += singleapplication
 ##### CMake build
 
 ```shell
-cmake -S ../ -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
-cmake --build . --clean-first
-cmake --install . --prefix pkg/usr/ --strip
+cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
+cmake --build build --clean-first
+cmake --install build --prefix pkg/usr/ --strip
 ```
 
 **Note:** If you also want to generate the pkg-config file, replace the first `cmake` command with the following:
 
 ```shell
-cmake -S ../ -DCMAKE_INSTALL_PREFIX=/usr -DGENERATE_PKG_CONFIG=ON -DCMAKE_BUILD_TYPE=Release
+cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr -DGENERATE_PKG_CONFIG=ON -DCMAKE_BUILD_TYPE=Release
 ```
 
 Once the files are installed on your system, add the library in your `CMakeLists.txt` file:
