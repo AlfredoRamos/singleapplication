@@ -10,7 +10,7 @@ Single application library for Qt without `network` dependency. Based on [Dmitry
 ### Dependencies
 
 - Qt >= 5.9.2
-- C++11 compiler support
+- Compiler with standard >= C++11
 
 ### Build
 
@@ -81,7 +81,7 @@ PKGCONFIG += singleapplication
 ```shell
 cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
 cmake --build build --clean-first
-cmake --install build --prefix pkg/usr/ --strip
+cmake --install build --prefix build/pkg/usr/ --strip
 ```
 
 **Note:** If you also want to generate the pkg-config file, replace the first `cmake` command with the following:

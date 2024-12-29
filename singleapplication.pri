@@ -7,6 +7,8 @@ lessThan(QT_MAJOR_VERSION, 6) {
 	CONFIG += c++1z
 }
 
+message("Building $${TARGET} with Qt $${QT_VERSION}")
+
 INCLUDEPATH += $${PWD}/src
 
 SOURCES += $${PWD}/src/singleapplication.cpp
