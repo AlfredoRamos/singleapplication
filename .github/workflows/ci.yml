@@ -47,7 +47,7 @@ jobs:
           extra: --external 7z
 
       - name: Run Cppcheck
-        run: cppcheck --enable=all --inconclusive --report-progress --std=c++11 src/
+        run: cppcheck --enable=all --inconclusive --report-progress --std=c++17 src/
 
       - name: Package build
         run: |
