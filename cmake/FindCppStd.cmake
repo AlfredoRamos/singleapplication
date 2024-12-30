@@ -16,4 +16,4 @@ endforeach()
 
 set(CMAKE_CXX_STANDARD ${HIGHEST_SUPPORTED_CXX_STANDARD})
 add_compile_options(-Wall)
-message(STATUS "Building ${PROJECT_NAME} with C++${CMAKE_CXX_STANDARD}")
+message(STATUS "Using C++${CMAKE_CXX_STANDARD} standard")

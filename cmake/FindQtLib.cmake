@@ -15,7 +15,7 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
 if(QT_VERSION VERSION_LESS QT_MINIMUM_VERSION)
 	message(FATAL_ERROR "This library requires Qt >= ${QT_MINIMUM_VERSION}, found ${QT_VERSION}")
 else()
-	message(STATUS "Building ${PROJECT_NAME} with Qt ${QT_VERSION}")
+	message(STATUS "Using Qt ${QT_VERSION}")
 endif()
 
 set(CMAKE_AUTOUIC ON)

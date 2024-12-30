@@ -14,11 +14,21 @@ Single application library for Qt without `network` dependency. Based on [Dmitry
 
 ### Build
 
+#### CMake flags
+
+A list of additional CMake flags are listed below:
+
+| Flag                  | Default value | Description                                             |
+| :-------------------- | :-----------: | :------------------------------------------------------ |
+| `USE_QT5`             |     `OFF`     | Use Qt 5 instead of the higher major version available. |
+| `GENERATE_PKG_CONFIG` |     `OFF`     | Generate pkg-config file.                               |
+| `STATIC_LIB`          |     `OFF`     | Build as a static library.                              |
+
+---
+
 #### Subproject
 
-If you want to use the library directly inside your application source code, you can use any of the following methods:
-
-Include the `singleapplication` directory and add the library on your `CMakeLists.txt` file:
+If you want to use the library directly inside your application source code, include the `singleapplication` directory and add the library on your `CMakeLists.txt` file:
 
 ```cmake
 add_subdirectory(singleapplication)
@@ -36,20 +46,12 @@ git clone https://github.com/AlfredoRamos/singleapplication.git
 cd singleapplication
 ```
 
-After that, you can use any of the following methods to build and install the library on your system.
-
-##### CMake build
+After that, build and install the library on your system.
 
 ```shell
 cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
 cmake --build build --clean-first
 cmake --install build --prefix build/pkg/usr/ --strip
-```
-
-**Note:** If you also want to generate the pkg-config file, add the `-DGENERATE_PKG_CONFIG=ON` flag in the first `cmake` command:
-
-```shell
-cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DGENERATE_PKG_CONFIG=ON
 ```
 
 Once the files are installed on your system, add the library in your `CMakeLists.txt` file:

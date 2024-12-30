@@ -1,8 +1,7 @@
 include(FindCppStd)
 include(GNUInstallDirs)
 include(FindQtLib)
-
-add_library("${PROJECT_NAME}" SHARED)
+include(LibBuildType)
 
 target_sources(
 	"${PROJECT_NAME}"
