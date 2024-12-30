@@ -11,6 +11,7 @@ Single application library for Qt without `network` dependency. Based on [Dmitry
 
 - Qt >= 5.9.2
 - Compiler with standard >= C++11
+- CMake >= 3.18.0
 
 ### Build
 

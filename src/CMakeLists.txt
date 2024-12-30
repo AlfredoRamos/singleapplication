@@ -3,6 +3,22 @@ include(GNUInstallDirs)
 include(FindQtLib)
 include(LibBuildType)
 
+target_compile_options(
+	"${PROJECT_NAME}"
+	PRIVATE
+	-fstack-protector-strong
+	-D_FORTIFY_SOURCE=2
+	-O2
+)
+
+target_link_options(
+	"${PROJECT_NAME}"
+	PRIVATE
+	-Wl,-z,relro
+	-Wl,-z,now
+	-Wl,-z,noexecstack
+)
+
 target_sources(
 	"${PROJECT_NAME}"
 	PRIVATE
@@ -27,6 +43,8 @@ target_compile_definitions(
 	SINGLEAPPLICATION_LIBRARY
 	QT_DEPRECATED_WARNINGS
 	QT_DISABLE_DEPRECATED_BEFORE=0x050902
+	QT_NO_DEBUG_OUTPUT
+	QT_NO_WARNING_OUTPUT
 )
 
 set_target_properties(
