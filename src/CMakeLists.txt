@@ -1,3 +1,10 @@
+# Single application library for Qt without network dependency
+# https://github.com/AlfredoRamos/singleapplication
+#
+# @author Alfredo Ramos <alfredo.ramos@proton.me>
+# @copyright 2018 Alfredo Ramos (https://alfredoramos.mx)
+# @license GPL-3.0-or-later
+
 include(FindCppStd)
 include(GNUInstallDirs)
 include(FindQtLib)

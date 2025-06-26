@@ -1,3 +1,10 @@
+# Find and set Qt version
+# https://github.com/AlfredoRamos/singleapplication
+#
+# @author Alfredo Ramos <alfredo.ramos@proton.me>
+# @copyright 2018 Alfredo Ramos (https://alfredoramos.mx)
+# @license GPL-3.0-or-later
+
 set(QT_MINIMUM_VERSION 5.9.2)
 
 option(USE_QT5 "Use Qt 5 instead of the higher major version available" OFF)
