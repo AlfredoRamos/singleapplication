@@ -49,9 +49,17 @@ jobs:
       - name: Run Cppcheck
         run: cppcheck --enable=all --inconclusive --report-progress --std=c++17 src/
 
-      - name: Package build
+      - name: Build shared library
         run: |
-          cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DGENERATE_PKG_CONFIG=ON -DCMAKE_BUILD_TYPE=Release
+          cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DGENERATE_PKG_CONFIG=ON -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --clean-first
+          cmake --install build --prefix build/pkg/usr/ --strip
+          tree -p build/pkg/
+          rm -fR build
+
+      - name: Build static library
+        run: |
+          cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DGENERATE_PKG_CONFIG=ON -DSTATIC_LIB=ON -DCMAKE_BUILD_TYPE=Release
           cmake --build build --clean-first
           cmake --install build --prefix build/pkg/usr/ --strip
           tree -p build/pkg/
@@ -59,7 +67,7 @@ jobs:
 
       - name: Run tests
         run: |
-          cmake -S tests -B build
+          cmake -S tests -B build -G Ninja
           cmake --build build --clean-first
           ctest -V --test-dir build
           rm -fR build
