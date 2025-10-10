@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        qt-version: ['5.9.2', '5.15.0', '6.2.0']
+        qt-version: ['5.9.2', '5.15.*', '6.5.*', '6.9.*']
         compiler-type: [gcc, clang]
     steps:
       - name: Checkout sources
