@@ -12,6 +12,7 @@ Single application library for Qt without `network` dependency. Based on [Dmitry
 - Qt >= 5.9.2
 - Compiler with standard >= C++17
 - CMake >= 3.18.0
+- Ninja >= 1.12.1 (Optional)
 
 ### Build
 
@@ -49,8 +50,10 @@ cd singleapplication
 
 After that, build and install the library on your system.
 
+> **Note:** If you don't want to use the Ninja build system and use Make instead, simply remove the `-G Ninja` flag.
+
 ```shell
-cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
+cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
 cmake --build build --clean-first
 cmake --install build --prefix build/pkg/usr/ --strip
 ```
